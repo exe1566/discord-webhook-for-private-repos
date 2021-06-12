@@ -28,7 +28,7 @@ function createEmbed(repo, branch, url, commits, size, report) {
                 .setTitle(commits[0].message.split('\n')[0])
                 .setDescription(getChangeLog(commits, size))
                 .setTimestamp(Date.parse(latest.timestamp))
-                .setFooter(`⚡ changes were made by @${commits[0].author.username} `)
+                .setFooter(`⚡ changes were made by @${commits[0].author.username} `, commits[0].author.avatar_url)
                 .setThumbnail("https://media.discordapp.net/attachments/565279540906033153/853390386734825492/logo.png?width=502&height=670")
                 //.setImage('https://media.discordapp.net/attachments/565279540906033153/853390386734825492/logo.png?width=502&height=670')
     if (report.tests.length > 0) { appendTestResults(embed, report) }
