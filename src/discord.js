@@ -28,7 +28,7 @@ function createEmbed(repo, branch, url, commits, size, report) {
                 .setTitle(size + (size == 1 ? " commit was " : " commits were ") + "added to " + branch)
                 .setDescription(getChangeLog(commits, size))
                 .setTimestamp(Date.parse(latest.timestamp))
-                .setFooter(`⚡ Değişiklilikler @${commits[0].author.username} tarafından yapıldı`)
+                .setFooter(`⚡ changes were made by @${commits[0].author.username}`)
 
     if (report.tests.length > 0) { appendTestResults(embed, report) }
     return embed
