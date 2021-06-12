@@ -25,10 +25,10 @@ function createEmbed(repo, branch, url, commits, size, report) {
     var embed = new discord.RichEmbed()
                 .setColor(getEmbedColor(report))
                 //.setTitle(size + (size == 1 ? " Commit was " : " Commits were ") + "added to " + repo + " (" + branch + ")")
-                .setTitle(size + (size == 1 ? " commit was " : " commits were ") + "added to " + repo)
+                .setTitle(size + (size == 1 ? " commit was " : " commits were ") + "added to " + branch)
                 .setDescription(getChangeLog(commits, size))
                 .setTimestamp(Date.parse(latest.timestamp))
-                .setFooter(`⚡ changes were made by @${commits[0].author.username}`)
+                .setFooter(`⚡ Değişiklilikler @${commits[0].author.username} tarafından yapıldı`)
 
     if (report.tests.length > 0) { appendTestResults(embed, report) }
     return embed
@@ -45,6 +45,7 @@ function getChangeLog(commits, size) {
         var commit = commits[i];
         var sha = commit.id.substring(0, 6)
         var message = commit.message.length > MAX_MESSAGE_LENGTH ? (commit.message.substring(0, MAX_MESSAGE_LENGTH) + "..."): commit.message
+        changelog += `[\`${sha}\`] — ${message}\n`
     }
 
     return changelog
