@@ -43,6 +43,7 @@ function getChangeLog(commits, size) {
         }
 
         var commit = commits[i];
+        console.log(commit)
         var sum = commit.summary
         var message = commit.message.length > MAX_MESSAGE_LENGTH ? (commit.message.substring(0, MAX_MESSAGE_LENGTH) + "..."): commit.message
         changelog += sum
