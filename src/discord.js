@@ -34,6 +34,17 @@ function createEmbed(repo, branch, url, commits, size, report) {
     return embed
 }
 
+function getFirstLine(str){
+    var breakIndex = str.indexOf("\n");
+
+   // consider that there can be line without a break
+    if (breakIndex === -1){
+        return str;
+    }
+
+    return str.substr(0, breakIndex);
+}
+
 function getChangeLog(commits, size) {
     var changelog = ""
     for (var i in commits) {
@@ -43,11 +54,13 @@ function getChangeLog(commits, size) {
         }
 
         var commit = commits[i];
-        console.log(commit)
-        var sum = commit.summary
         var message = commit.message.length > MAX_MESSAGE_LENGTH ? (commit.message.substring(0, MAX_MESSAGE_LENGTH) + "..."): commit.message
-        changelog += sum
-        changelog += message
+        
+        var lines = text.split(message);   // split all lines into array
+        var firstline = lines.shift();   // read and remove first line
+        var rest = lines.join("\n");     // re-join the remaining lines
+
+        changelog += firstline + "\n" + rest
     }
 
     return changelog
