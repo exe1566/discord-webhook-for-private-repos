@@ -23,7 +23,7 @@ function createEmbed(repo, branch, url, commits, size, report) {
     var latest = commits[0]
 
     var embed = new discord.RichEmbed()
-                .setColor(getEmbedColor(report))
+                .setColor('#00ffff')
                 //.setTitle(size + (size == 1 ? " Commit was " : " Commits were ") + "added to " + repo + " (" + branch + ")")
                 .setTitle(commits[0].message.split('\n')[0])
                 .setDescription(getChangeLog(commits, size))
