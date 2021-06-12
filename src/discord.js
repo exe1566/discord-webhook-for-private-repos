@@ -36,10 +36,18 @@ function createEmbed(repo, branch, url, commits, size, report) {
 
 function getChangeLog(commits, size) {
     var changelog = ""
-    var message = commit.message
-    var sum = commit.summary
-    changelog += sum
-    changelog += message
+    for (var i in commits) {
+        if (i > 4) {
+            changelog += `+ ${size - i} more...\n`
+            break
+        }
+
+        var commit = commits[i];
+        var sum = commit.summary
+        var message = commit.message.length > MAX_MESSAGE_LENGTH ? (commit.message.substring(0, MAX_MESSAGE_LENGTH) + "..."): commit.message
+        changelog += sum
+        changelog += message
+    }
 
     return changelog
 }
