@@ -42,7 +42,6 @@ function getChangeLog(commits, size) {
             break
         }
 
-        var firstLine = theString.split('\n')[0]
         var commit = commits[i];
         var message = commit.message.length > MAX_MESSAGE_LENGTH ? (commit.message.substring(0, MAX_MESSAGE_LENGTH) + "..."): commit.message
         
