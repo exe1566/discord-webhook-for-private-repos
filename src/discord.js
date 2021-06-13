@@ -23,14 +23,14 @@ function createEmbed(repo, branch, url, commits, size, report) {
     var latest = commits[0]
 
     var embed = new discord.RichEmbed()
-                .setColor('#00ffff')
-                //.setTitle(size + (size == 1 ? " Commit was " : " Commits were ") + "added to " + repo + " (" + branch + ")")
-                .setTitle(commits[0].message.split('\n')[0])
-                .setDescription(getChangeLog(commits, size))
-                .setTimestamp(Date.parse(latest.timestamp))
-                .setFooter(`⚡ Değişiklilikler @${commits[0].author.username} tarafından yapıldı`, commits[0].author.avatar_url)
-                .setThumbnail("https://media.discordapp.net/attachments/565279540906033153/853390386734825492/logo.png?width=502&height=670")
-                //.setImage('https://media.discordapp.net/attachments/565279540906033153/853390386734825492/logo.png?width=502&height=670')
+        .setColor('#00ffff')
+        //.setTitle(size + (size == 1 ? " Commit was " : " Commits were ") + "added to " + repo + " (" + branch + ")")
+        .setTitle("[" + commits[0].id.substring(0,6) + "]" + commits[0].message.split('\n')[0])
+        .setDescription(getChangeLog(commits, size))
+        .setTimestamp(Date.parse(latest.timestamp))
+        .setFooter(`⚡ Değişiklilikler @${commits[0].author.username} tarafından yapıldı`, commits[0].author.avatar_url)
+        .setThumbnail("https://media.discordapp.net/attachments/565279540906033153/853390386734825492/logo.png?width=502&height=670")
+        //.setImage('https://media.discordapp.net/attachments/565279540906033153/853390386734825492/logo.png?width=502&height=670')
     if (report.tests.length > 0) { appendTestResults(embed, report) }
     return embed
 }
@@ -43,6 +43,7 @@ function getChangeLog(commits, size) {
             break
         }
 
+        var sha = commit.id.substring(0, 6)
         var commit = commits[i];
         var message = commit.message.length > MAX_MESSAGE_LENGTH ? (commit.message.substring(0, MAX_MESSAGE_LENGTH) + "..."): commit.message
         
