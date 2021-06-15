@@ -12,12 +12,12 @@ module.exports.send = (id, token, repo, branch, url, commits, size, report) => n
         return
     }
 
-    if (commits[0].message.split('\n')[0].includes('Güncellemesi'))
-    {
-        client.send("@everyone")
-    }
     client.send(createEmbed(repo, branch, url, commits, size, report)).then(() => {
         console.log("Successfully sent the message!")
+        if (commits[0].message.split('\n')[0].includes('Güncellemesi'))
+        {
+            client.send("@everyone")
+        }
         resolve()
     }, reject)
 })
