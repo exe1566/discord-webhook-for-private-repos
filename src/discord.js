@@ -25,7 +25,7 @@ function createEmbed(repo, branch, url, commits, size, report) {
     var embed = new discord.RichEmbed()
         .setColor('#00ffff')
         //.setTitle(size + (size == 1 ? " Commit was " : " Commits were ") + "added to " + repo + " (" + branch + ")")
-        .setTitle("[" + commits[0].id + "]" + commits[0].message.split('\n')[0])
+        .setTitle(commits[0].message.split('\n')[0])
         .setDescription(getChangeLog(commits, size))
         .setTimestamp(Date.parse(latest.timestamp))
         .setFooter(`⚡ Değişiklilikler @${commits[0].author.username} tarafından yapıldı`, commits[0].author.avatar_url)
