@@ -33,7 +33,7 @@ function createEmbed(repo, branch, url, commits, size, report) {
         .setDescription(getChangeLog(commits, size))
         .setTimestamp(Date.parse(latest.timestamp))
         .setFooter(`⚡ Değişiklilikler @${commits[0].author.username} tarafından yapıldı`, commits[0].author.avatar_url)
-        .setThumbnail("https://media.discordapp.net/attachments/565279540906033153/853390386734825492/logo.png?width=502&height=670")
+        .setThumbnail("https://media.discordapp.net/attachments/845422148838621274/952911660962697236/IMG_1980.png?width=503&height=671")
         //.setImage('https://media.discordapp.net/attachments/565279540906033153/853390386734825492/logo.png?width=502&height=670')
     if (report.tests.length > 0) { appendTestResults(embed, report) }
     return embed
